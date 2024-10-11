@@ -1,26 +1,9 @@
 const Task = require("../model/Task");
 
-// reg get
-const getUserData = async (req, res) => {
-  try {
-    const { emailAddress, password } = req.body;
-    const emailPass = await RegisterDetails.find({ emailAddress, password });
-
-    res.json({
-      data: emailPass,
-    });
-  } catch (error) {
-    res.json({
-      Error: message.error,
-    });
-  }
-};
-// task post
-
 const todoList = async (req, res) => {
   try {
     const { serialNumber, date, taskName, aboutTask, taskStatus } = req.body;
-    const getData = new TaskManager({
+    const getData = new Task({
       serialNumber,
       date,
       taskName,
@@ -43,7 +26,7 @@ const todoList = async (req, res) => {
 const taskData = async (req, res) => {
   // console.log("asd");
   try {
-    const taskDataGet = await TaskManager.find();
+    const taskDataGet = await Task.find();
     res.json({
       Data: taskDataGet,
     });
@@ -59,7 +42,7 @@ const GetSingleData = async (req, res) => {
   try {
     const Id = req.params.sn;
 
-    const data = await TaskManager.findOne({ serialNumber: Id });
+    const data = await Task.findOne({ serialNumber: Id });
     console.log(data);
     res.json({
       data: data,
@@ -76,7 +59,7 @@ const updateData = async (req, res) => {
   try {
     const { serialNumber, date, taskName, aboutTask, taskStatus } = req.body;
 
-    const updatedData = await TaskManager.findOneAndUpdate(
+    const updatedData = await Task.findOneAndUpdate(
       { serialNumber: serialNumber },
       {
         $set: {
@@ -96,7 +79,7 @@ const updateData = async (req, res) => {
 const deleteNote = async (req, res) => {
   try {
     const objectID = req.params.serialNumber;
-    const deleteGet = await TaskManager.deleteOne({ serialNumber: objectID });
+    const deleteGet = await Task.deleteOne({ serialNumber: objectID });
     console.log("del", deleteGet);
     res.json({
       Data: deleteGet,

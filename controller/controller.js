@@ -170,4 +170,5 @@ const Reset = async (req, res) => {
   }
 };
 
+
 module.exports = { regPost, login, getUserData, Reset, Forgot };
