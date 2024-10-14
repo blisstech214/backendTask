@@ -5,7 +5,7 @@ const userData = new mongoose.Schema({
     type: Number,
   },
   date: {
-    type: String,
+    type: Date, // Use "Date" with a capital "D"
   },
   taskName: {
     type: String,
